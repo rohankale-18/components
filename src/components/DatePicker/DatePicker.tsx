@@ -23,6 +23,9 @@ interface DatePickerProps {
         | "yyyy/MM/dd HH:mm:ss";
 }
 
+export const formatDateForBackend = (date: Date): string => {
+    return date.toISOString().split("T")[0]; // Format as "YYYY-MM-DD"
+};
 const DatePicker: React.FC<DatePickerProps> = ({
     initialDate,
     onDateChange,
@@ -353,13 +356,13 @@ const DatePicker: React.FC<DatePickerProps> = ({
                 {/* Input to display the selected date */}
                 <input
                     ref={inputRef}
-                    type="text" 
+                    type="text"
                     readOnly
                     className="border dark:border-0 rounded-md p-2 w-64 cursor-pointer dark:bg-gray-900 dark:text-white ring-offset-4 dark:ring-white"
                     placeholder={`${format}`}
                     value={selectedDate ? formatDate(selectedDate, format) : ""}
-                    onFocus={handleShowCalender} // Toggle calendar visibility 
-					onClick={()=> setShowCalendar(true)}
+                    onFocus={handleShowCalender} // Toggle calendar visibility
+                    onClick={() => setShowCalendar(true)}
                     aria-label="Selected date"
                 />
                 <div className="absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none">

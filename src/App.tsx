@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "./App.css";
-import DatePicker from "./components/DatePicker/DatePicker";
+import DatePicker, { formatDateForBackend } from "./components/DatePicker/DatePicker";
 import Navbar from "./components/Navbar/Navbar";
 
 function App() {
 	const [date, setDate] = useState<Date>();
+	console.log(date);
+	console.log('formatted date', formatDateForBackend(date || new Date()));
 
     return (
         <>
